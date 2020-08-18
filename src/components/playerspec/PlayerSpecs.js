@@ -12,20 +12,16 @@ export default class PlayerSpecs extends Component {
     }
 
     getIndex (id) {
-        console.log(id)
         let playerIndex = null;
         this.props.players.forEach((player,index) => {
-
             if(player.id === id) {
                 playerIndex = index
             }
-            
         })
         return playerIndex
     }
 
     handleChange (event) {
-
         if (event.target.value === "") {
             this.setState({
                 player: ""
@@ -35,11 +31,8 @@ export default class PlayerSpecs extends Component {
             id: event.target.value,
             player: this.props.players[this.getIndex(event.target.value)]
         })
-
+        }
     }
-    }
-
-    
 
     render() {
 
@@ -47,20 +40,20 @@ export default class PlayerSpecs extends Component {
                         <p>Player Name: {this.state.player.name}</p>
                         <p>Player ID: {this.state.player.id}</p>
                         <p>Player Score: {this.state.player.points}</p>
-                        <p>Player History: {this.state.player.history}</p>
+                        <p>Player History: {this.state.player.history? this.state.player.history.reverse().slice(0,50).map(el => el + ", "): "none" }</p>
                     </div>
 
         return (
-            <div>
-               
+            <div className="container_playerSpecs">
+               <div className="box">
                 <h1>Player Preview</h1>
                 <select onChange={this.handleChange}>
-                    <option value="">Please select</option>
-                   {this.props.players.map((player) => <option key={player.id} value={player.id}>{player.name}</option>)}
+                    <option value="">Please select an option</option>
+                    {this.props.players.map((player) => <option 
+                            key={player.id} 
+                            value={player.id}>{player.name}</option>)}
                 </select>
-
-                <div>
-                    {this.state.player === ""? "Please select your player..." : prev }
+                    {this.state.player === ""? "" : prev }
                 </div>
             </div>
         )

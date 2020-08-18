@@ -9,7 +9,6 @@ export default class playerList extends Component {
                 position:  "",
                 distance: ""
             }
-        
 
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -21,66 +20,74 @@ export default class playerList extends Component {
                 name: event.target.value
             })
         } else if (event.target.type === "radio") {
-
             this.setState({
                 score: event.target.value
             })
-
-        }
-        
-        else if (event.target.id === "distance") {
+        } else if (event.target.id === "distance") {
             this.setState({
                 distance: event.target.value,
-                
             })
         } else {
             this.setState({
                 position: event.target.value,
-                
             })
         }
     }
 
     handleSubmit (event) {
         event.preventDefault()
-
         this.props.addHistory(this.state)
     }
     
-
     render() {
-
-        console.log(this.state)
-
         return (
-            <div>   
+            <div className="container_playerList">   
                     <h1>New Plays</h1>
                     <form onSubmit={this.handleSubmit}>
-                        <select id="who" onChange={this.handleChange} required>
-                            <option value="">Please select a player</option>
-                        {this.props.players.map((player) => <option key={player.id} value={player.name}>{player.name}</option>)}
-                        </select><br/>
-                        <p>Did he score?</p>
-                        <label> Yes
-                            <input type="radio" name="score" value="true" onChange={this.handleChange} checked={this.state.score==="true"}/>
-                        </label> 
-                        <label> No
-                            <input type="radio" name="score" value="false" onChange={this.handleChange} checked={this.state.score==="false"}/>
-                        </label><br/>
-                        <select id="what" onChange={this.handleChange} required>
-                            <option value="">Please select shot</option>
-                            <option value="position_a">position_a</option>
-                            <option value="position_b">position_b</option>
-                            <option value="position_c">position_c</option>
-                            <option value="position_d">position_d</option>
-                            <option value="position_e">position_e</option>
-                        </select><br/>
-                        <p>Distance</p>
-                        <input id="distance" trype='text' value={this.state.distance} onChange={this.handleChange} required />
+                        <select id="who" 
+                                onChange={this.handleChange} 
+                                required>
+                            <option value="">Please select an option</option>
+                            {this.props.players.map((player) => <option 
+                                    key={player.id} 
+                                    value={player.name}>{player.name}</option>)}
+                        </select>
                         <br/>
-                        <input type='submit' value='submit' />
+                        <p>Did he score?</p>
+                        <label> Yes </label> 
+                            <input type="radio" 
+                                   name="score" 
+                                   value="true" 
+                                   onChange={this.handleChange} 
+                                   checked={this.state.score==="true"}/>
+                        <label> No </label>
+                            <input type="radio" 
+                                   name="score" 
+                                   value="false"  
+                                   onChange={this.handleChange}  
+                                   checked={this.state.score==="false"}/>
+                        <br/>
+                        <p className="position">Position</p>
+                        <select id="what" onChange={this.handleChange} required>
+                            <option value="">Please select an option</option>
+                            <option value="Position_A">Position_A</option>
+                            <option value="Position_B">Position_B</option>
+                            <option value="Position_C">Position_C</option>
+                            <option value="Position_D">Position_D</option>
+                            <option value="Position_E">Position_E</option>
+                        </select>
+                        <br/>
+                        <p>Distance</p>
+                        <input id="distance" 
+                               trype='text' 
+                               value={this.state.distance}
+                               onChange={this.handleChange} 
+                               required />
+                        <br/>
+                        <input className="button" 
+                               type='submit' 
+                               value='submit'/>
                     </form>
-
             </div>
         )
     }

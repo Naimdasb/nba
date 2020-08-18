@@ -4,28 +4,24 @@ import auth from './auth'
 
 export default function ProtectedRoute({component: Component, ...rest}) {
     return (
-       
             <Route {...rest} render={
                 (props) => {
-
-                 if(auth.isAuthenticated()) {   
-                     
+                    if(auth.isAuthenticated()) {   
                     return <Component {...props}/>
                     
-                } else {
+                    } else {
 
-                    return <Redirect to={
-                        {
-                            pathname: "/",
-                            state: {
-                                from: props.location
+                        return <Redirect to={
+                            {
+                                pathname: "/",
+                                state: {
+                                    from: props.location
+                                }
                             }
-                        }
-                    } />
-                }
+                        } />
+                    }
                 
                 }
             }/>
-        
     )
 }

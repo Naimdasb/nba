@@ -3,14 +3,13 @@ class Auth {
         this.authenticated = false
     }
 
-    login(user,pass,cb) {
-    let isAuth = localStorage.getItem(user);
-    if(isAuth === pass) {
-        this.authenticated = true;
-        cb()
-    }
-     
-        
+    login(user, pass, cb) {
+        let isAuth = localStorage.getItem(user);
+        if(isAuth === pass) {
+            localStorage.setItem("currentSession",user)
+            this.authenticated = true;
+            cb()
+        }
     }
 
     logout(cb) {
@@ -18,9 +17,10 @@ class Auth {
         cb()
     }
 
-    register(user,pass,cb) {
+    register(user, pass, cb) {
         if(user !== "" && pass !== "") {
             localStorage.setItem(user,pass)
+            localStorage.setItem("currentSession",user)
             this.authenticated = true
             cb()
         }
@@ -28,8 +28,6 @@ class Auth {
         this.authenticated = false
         cb()
     }
-
-  
 
     isAuthenticated () {
         return this.authenticated

@@ -34,19 +34,27 @@ export default class Player extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container_player">
                 <h1>New Player Preview</h1>
                 <p>Player Name: {this.state.name}</p>
                 <p>Player ID: {this.state.id}</p>
                 <h1>Player Input</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <label> Name: 
-                        <input type="text" onChange={this.handleChange} value={this.state.name} required/>
-                    </label><br/>
-                    <label> Player ID
-                        <input type="number" onChange={this.handleChange} value={this.state.id} required/>
-                    </label><br/>
-                    <input type="submit" value="Submit" />
+                    <label> Name: </label>
+                        <input type="text" 
+                               onChange={this.handleChange}  
+                               value={this.state.name}  
+                               required/>
+                    <br/>
+                    <label> Player ID</label>
+                        <input type="number"  
+                               onChange={this.handleChange} 
+                               value={this.state.id} 
+                               required/>
+                    <br/>
+                    <input className='button' 
+                           type="submit" 
+                           value="Submit" />
                 </form>
             </div>
         )
