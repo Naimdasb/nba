@@ -7,7 +7,6 @@ class Auth {
     let isAuth = localStorage.getItem(user);
     if(isAuth === pass) {
         this.authenticated = true;
-        
         cb()
     }
      
@@ -20,9 +19,13 @@ class Auth {
     }
 
     register(user,pass,cb) {
-        localStorage.setItem(user,pass)
-
-        this.authenticated = true
+        if(user !== "" && pass !== "") {
+            localStorage.setItem(user,pass)
+            this.authenticated = true
+            cb()
+        }
+        
+        this.authenticated = false
         cb()
     }
 
