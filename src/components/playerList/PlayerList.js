@@ -6,7 +6,8 @@ export default class playerList extends Component {
         this.state = {
                 name: "",
                 score: "false",
-                shot:  ""
+                position:  "",
+                distance: ""
             }
         
 
@@ -27,11 +28,15 @@ export default class playerList extends Component {
 
         }
         
-        
-        
-        else {
+        else if (event.target.id === "distance") {
             this.setState({
-                shot: event.target.value
+                distance: event.target.value,
+                
+            })
+        } else {
+            this.setState({
+                position: event.target.value,
+                
             })
         }
     }
@@ -55,17 +60,24 @@ export default class playerList extends Component {
                             <option value="">Please select a player</option>
                         {this.props.players.map((player) => <option key={player.id} value={player.name}>{player.name}</option>)}
                         </select><br/>
+                        <p>Did he score?</p>
                         <label> Yes
                             <input type="radio" name="score" value="true" onChange={this.handleChange} checked={this.state.score==="true"}/>
                         </label> 
                         <label> No
                             <input type="radio" name="score" value="false" onChange={this.handleChange} checked={this.state.score==="false"}/>
-                        </label>
+                        </label><br/>
                         <select id="what" onChange={this.handleChange} required>
                             <option value="">Please select shot</option>
-                            <option value="shot_a">shot a</option>
-                            <option value="shot_b">shot b</option>
-                        </select>
+                            <option value="position_a">position_a</option>
+                            <option value="position_b">position_b</option>
+                            <option value="position_c">position_c</option>
+                            <option value="position_d">position_d</option>
+                            <option value="position_e">position_e</option>
+                        </select><br/>
+                        <p>Distance</p>
+                        <input id="distance" trype='text' value={this.state.distance} onChange={this.handleChange} required />
+                        <br/>
                         <input type='submit' value='submit' />
                     </form>
 

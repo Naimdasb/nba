@@ -3,12 +3,14 @@ import Player from '../player/Player'
 import PlayerList from '../playerList/PlayerList';
 import Ranking from '../ranking/Ranking'
 import PlayerSpecs from '../playerspec/PlayerSpecs'
+import History from '../history/History'
 
 export default class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            playerList: JSON.parse(localStorage.getItem('data')) || []
+            playerList: JSON.parse(localStorage.getItem('data')) || [],
+            recordList: JSON.parse(localStorage.getItem('record')) || []
         }
 
         this.createPlayer = this.createPlayer.bind(this)
@@ -48,14 +50,24 @@ export default class Dashboard extends Component {
 
 
         this.setState( state => {
-            let prev = [...state.playerList];
-            prev[index].history = [...prev[index].history, props.shot]
-            prev[index].points = props.score === "true"? prev[index].points + 1 : prev[index].points
+            let prevList = [...state.playerList];
+            prevList[index].history = [...prevList[index].history, props.position]
+            prevList[index].points = props.score === "true"? prevList[index].points + 1 : prevList[index].points
 
-            return {playerList : prev}
+
+            let prevRecord = [...state.recordList];
+            
+            prevRecord.push({shooter: props.name , distance: props.distance, score: props.score, position: props.position }) 
+            
+            return {
+                playerList : prevList,
+                recordList: prevRecord
+            }
         }
 
         )
+
+
     }
 
     
@@ -63,6 +75,7 @@ export default class Dashboard extends Component {
     
     componentDidUpdate() {
         localStorage.setItem('data', JSON.stringify(this.state.playerList))
+        localStorage.setItem('record', JSON.stringify(this.state.recordList))
         
     }
 
@@ -76,6 +89,7 @@ export default class Dashboard extends Component {
                 <PlayerList players={this.state.playerList} addHistory={(props, index) => this.setHistory(props,index)} />
                 <Ranking players={this.state.playerList} />
                 <PlayerSpecs players={this.state.playerList} />
+                <History records={this.state.recordList}/>
             </div>
         )
     }

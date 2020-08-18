@@ -37,15 +37,15 @@ export default class Player extends Component {
             <div>
                 <h1>New Player Preview</h1>
                 <p>Player Name: {this.state.name}</p>
-                <p>Player ID: {this.state.number}</p>
+                <p>Player ID: {this.state.id}</p>
                 <h1>Player Input</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label> Name: 
                         <input type="text" onChange={this.handleChange} value={this.state.name} required/>
                     </label><br/>
                     <label> Player ID
-                        <input type="number" onChange={this.handleChange} value={this.state.number} required/>
-                    </label>
+                        <input type="number" onChange={this.handleChange} value={this.state.id} required/>
+                    </label><br/>
                     <input type="submit" value="Submit" />
                 </form>
             </div>
