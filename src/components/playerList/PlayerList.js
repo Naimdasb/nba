@@ -25,18 +25,26 @@ export default class playerList extends Component {
             })
         } else if (event.target.id === "distance") {
             this.setState({
-                distance: event.target.value,
+                distance: event.target.value.slice(0,4)
             })
         } else {
             this.setState({
-                position: event.target.value,
+                position: event.target.value
             })
         }
     }
 
     handleSubmit (event) {
         event.preventDefault()
+        if(this.state.distance > 0) {
         this.props.addHistory(this.state)
+        this.setState({
+                name: "",
+                score: "false",
+                position:  "",
+                distance: ""
+            })
+        }
     }
     
     render() {
@@ -77,9 +85,10 @@ export default class playerList extends Component {
                             <option value="Position_E">Position_E</option>
                         </select>
                         <br/>
-                        <p>Distance</p>
-                        <input id="distance" 
-                               trype='text' 
+                        <p>Distance <span>(mts)</span></p>
+                        <input id="distance"
+                               
+                               type='number' 
                                value={this.state.distance}
                                onChange={this.handleChange} 
                                required />

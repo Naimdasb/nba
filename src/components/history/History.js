@@ -10,7 +10,7 @@ export default function Ranking(props) {
                 <p>Name: {record.shooter}</p>
                 <p>Position: {record.position}</p>
                 <p>Score: {record.score}</p>
-                <p>Distance: {record.distance}</p>
+                <p>Distance (mts): {record.distance}</p>
             </div>
             )}
         </div>

@@ -65,6 +65,10 @@ html {
     background-color: hsl(197, 100%, 60%) ;
 }
 
+.container_login button:disabled {
+    cursor: not-allowed;
+}
+
 
 /******* Dashboard ********/
 
@@ -170,6 +174,10 @@ html {
 .container_player .button:hover {
     background-color: hsla(207, 89%, 74%, 0.938);
     cursor: pointer;
+}
+
+.container_player .button:disabled {
+    cursor: not-allowed;
 }
 
 /****** PlayerList ******/
