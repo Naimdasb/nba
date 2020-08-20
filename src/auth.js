@@ -14,19 +14,19 @@ class Auth {
 
     logout(cb) {
         this.authenticated = false
+        localStorage.setItem("currentSession", "")
         cb()
     }
 
-    register(user, pass, cb) {
+    register(user, pass) {
         if(user !== "" && pass !== "") {
             localStorage.setItem(user,pass)
-            localStorage.setItem("currentSession",user)
             this.authenticated = true
-            cb()
+            
         }
         
         this.authenticated = false
-        cb()
+       
     }
 
     isAuthenticated () {

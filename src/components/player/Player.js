@@ -40,10 +40,12 @@ export default class Player extends Component {
 
     playerExist(id) {
         let players = JSON.parse(localStorage.getItem('data'))
+        let aux = []
+        if(players !== null){
         return players.filter(element => 
             element.id === id
-        )
-
+        )}
+        return aux
     }
 
     handleSubmit(event) {

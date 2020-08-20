@@ -61,16 +61,18 @@ export default class Home extends Component {
         
     }
 
+    
+
     render() {
         return (
             <div className="container_login">
-                <h1>App</h1>
+                <h1>Panel Login</h1>
                     <p>User</p>
                     <input id="user" 
                            type="text" 
                            onChange={this.handleChange} 
                            value={this.state.user} />
-                    <p>Password <span>(6 char long or more)</span></p>
+                    <p>Password <span>(7 char long or more)</span></p>
                     <input id="pass" 
                            type="password" 
                            onChange={this.handleChange} 
@@ -87,13 +89,9 @@ export default class Home extends Component {
                     disabled={!(this.state.userFlag && this.state.passFlag && this.userExist(this.state.user) === null)}
                     onClick= {
                         () => {
-                            auth.register(this.state.user,this.state.password, () => {
-                                this.props.history.push("/app")
-                            })
+                            auth.register(this.state.user,this.state.password)
                         }
                     }>Register</button>
-                    
-                    
             </div>
         )
     }
