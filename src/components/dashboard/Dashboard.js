@@ -76,7 +76,7 @@ export default class Dashboard extends Component {
                 }>Logout</button>
                 </div>
                 <Player addPlayer={(name, id) => this.createPlayer(name, id)}/>
-                <PlayerList players={this.state.playerList} addHistory={(props, index) => this.setHistory(props,index)} />
+                <PlayerList players={this.state.playerList} addHistory={(props) => this.setHistory(props)} />
                 <Ranking players={this.state.playerList} />
                 <PlayerSpecs players={this.state.playerList} />
                 <History records={this.state.recordList}/>

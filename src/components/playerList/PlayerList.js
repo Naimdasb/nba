@@ -38,12 +38,6 @@ export default class playerList extends Component {
         event.preventDefault()
         if(this.state.distance > 0) {
         this.props.addHistory(this.state)
-        this.setState({
-                name: "",
-                score: "false",
-                position:  "",
-                distance: ""
-            })
         }
     }
     
