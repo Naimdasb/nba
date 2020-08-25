@@ -12,7 +12,7 @@ export default function Ranking(props) {
                 <p>Name: {player.name}</p>
                 <p>ID: {player.id}</p>
                 <p>Points: {player.points}</p>
-                <p>Last Plays: {player.history.length === 0? "": player.history.reverse().slice(0,6).map(el => el + ", ") }</p>
+                <p>Last Plays: {player.history.length === 0? "": player.history.slice(-6).reverse().map(el => el + ", ") }</p>
             </div>
             )}
         </div>
